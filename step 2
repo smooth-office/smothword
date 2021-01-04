@@ -1,0 +1,19 @@
+//Create a new document.
+WordDocument document = new WordDocument();
+//Add a new section to the document.
+WSection section = (WSection) document.addSection();
+//Set margins of the section.
+section.getPageSetup().getMargins().setAll((float) 72);
+//Set page size of the section.
+section.getPageSetup().setPageSize(new SizeFSupport(612, 792));
+//Create paragraph styles.
+WParagraphStyle style = createParagraphStyle(document);
+//Create paragraph and apply formatting.
+createParagraph(section);
+//Create table and apply formatting.
+createTable(section);
+//Save and close the document.
+document.save("GettingStarted.docx");
+document.close();
+System.out.println("Word document generated successfully.");
+© 2021 GitHub, Inc.
