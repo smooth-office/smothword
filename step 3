@@ -1,0 +1,63 @@
+  
+/**
+ *
+ * Create paragraph and apply formatting.
+ * 
+ * @param section represents the section of a Word document.
+ */
+static IWParagraph createParagraph(WSection section) throws Exception 
+{
+    IWParagraph paragraph = section.getHeadersFooters().getHeader().addParagraph();
+    //Append picture to the paragraph.
+    WPicture picture = (WPicture) paragraph.appendPicture(new FileInputStream(getDataDir("AdventureCycle.jpg")));
+    picture.setTextWrappingStyle(TextWrappingStyle.InFrontOfText);
+    picture.setVerticalOrigin(VerticalOrigin.Margin);
+    picture.setVerticalPosition((float) -45);
+    picture.setHorizontalOrigin(HorizontalOrigin.Column);
+    picture.setHorizontalPosition(263.5f);
+    picture.setWidthScale((float) 20);
+    picture.setHeightScale((float) 15);
+    paragraph.applyStyle("Normal");
+    paragraph.getParagraphFormat().setHorizontalAlignment(HorizontalAlignment.Left);
+    //Add text to the paragraph.
+    WTextRange textRange = (WTextRange) paragraph.appendText("Adventure Works Cycles");
+    appendCharacterFormatToText(textRange.getCharacterFormat(), 12f, "Calibri");
+    textRange.getCharacterFormat().setTextColor((ColorSupport.getRed()).clone());
+ 
+    //Append paragraph.
+    paragraph = section.addParagraph();
+    paragraph.applyStyle("Heading 1");
+    paragraph.getParagraphFormat().setHorizontalAlignment(HorizontalAlignment.Center);
+ 
+    //Add text to the paragraph.
+    textRange = (WTextRange) paragraph.appendText("Adventure Works Cycles");
+    appendCharacterFormatToText(textRange.getCharacterFormat(), 18f, "Calibri");
+ 
+    //Append paragraph.
+    paragraph = section.addParagraph();
+    paragraph.getParagraphFormat().setFirstLineIndent((float) 36);
+    paragraph.getBreakCharacterFormat().setFontSize(12f);
+ 
+    //Add text to the paragraph.
+    textRange = (WTextRange) paragraph.appendText("Adventure Works Cycles, the fictitious company on which the Adventure Works sample databases are based, is a large, multinational manufacturing company. The company manufactures and sells metal and composite bicycles to North American, European and Asian commercial markets. While its base operation is located in Bothell, Washington with 290 employees, several regional sales teams are located throughout their market base.");
+    textRange.getCharacterFormat().setFontSize(12f);
+ 
+    //Append paragraph.
+    paragraph = section.addParagraph();
+    paragraph.getParagraphFormat().setFirstLineIndent((float) 36);
+    paragraph.getBreakCharacterFormat().setFontSize(12f);
+ 
+    //Add text to the paragraph.
+    textRange = (WTextRange) paragraph.appendText("In 2000, Adventure Works Cycles bought a small manufacturing plant, Importadores Neptuno, located in Mexico. Importadores Neptuno manufactures several critical subcomponents for the Adventure Works Cycles product line. These subcomponents are shipped to the Bothell location for final product assembly. In 2001, Importadores Neptuno, became the sole manufacturer and distributor of the touring bicycle product group.");
+    textRange.getCharacterFormat().setFontSize(12f);
+ 
+    //Append paragraph.
+    paragraph = section.addParagraph();
+    paragraph.applyStyle("Heading 1");
+    paragraph.getParagraphFormat().setHorizontalAlignment(HorizontalAlignment.Left);
+ 
+    //Add text to the paragraph.
+    textRange = (WTextRange) paragraph.appendText("Product Overview");
+    appendCharacterFormatToText(textRange.getCharacterFormat(), 16f, "Calibri");
+    return paragraph;
+}
